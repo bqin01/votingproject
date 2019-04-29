@@ -11,17 +11,22 @@ post '/cast' do
   @title = 'Thanks for casting your vote!'
   if params['vote'] == ".new"
     @vote = params['new_candid']
-    puts @vote
   else
     @vote = params['vote']
   end
-  @store = YAML::Store.new 'votes.yml'
-  @store.transaction do
-    @store['votes'] ||= {}
-    @store['votes'][@vote] ||= 0
-    @store['votes'][@vote] += 1
+  if @vote == nil || @vote == ""
+    puts "Error detected!"
+    @title = 'Your vote didn\'t seem to go through.'
+    erb :voteerror
+  else
+    @store = YAML::Store.new 'votes.yml'
+    @store.transaction do
+      @store['votes'] ||= {}
+      @store['votes'][@vote] ||= 0
+      @store['votes'][@vote] += 1
+    end
+    erb :cast
   end
-  erb :cast
 end
 
 get '/results' do
