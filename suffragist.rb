@@ -9,7 +9,12 @@ end
 
 post '/cast' do
   @title = 'Thanks for casting your vote!'
-  @vote  = params['vote']
+  if params['vote'] == ".new"
+    @vote = params['new_candid']
+    puts @vote
+  else
+    @vote = params['vote']
+  end
   @store = YAML::Store.new 'votes.yml'
   @store.transaction do
     @store['votes'] ||= {}

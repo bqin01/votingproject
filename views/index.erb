@@ -8,11 +8,18 @@
         <% Choices.each do |id, text| %>
           <li>
             <label class='radio'>
-              <input type='radio' name='vote' value='<%= id %>' id='vote_<%= id %>' />
+              <input type='radio' name='vote' value='<%= text %>' id='vote_<%= id %>' />
               <%= text %>
             </label>
           </li>
         <% end %>
+        <li>
+          <label class='radio'>
+            <input type='radio' name='vote' value='.new' id='.new'/>
+            Other Candidate (Write-in)
+            <input type='text' name='new_candid' id='newfield'/>
+          </label>
+        </li>
       </ul>
       <button type='submit' class='btn btn-primary'>Cast this vote!</button>
     </form>
