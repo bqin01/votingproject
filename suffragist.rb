@@ -32,4 +32,5 @@ Choices = {
   'BOR' => 'Boris Shmuylovich',
   'DJT' => 'Donald Trump',
   'VLD' => 'Vladimir Putin',
+  'DXP' => 'Deng Xiaoping',
 }
