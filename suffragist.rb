@@ -15,32 +15,31 @@ post '/cast' do
     @vote = params['vote']
   end
   if @vote == nil || @vote == ""
-    puts "Error detected!"
     @title = 'Your vote didn\'t seem to go through.'
     erb :voteerror
   else
     @store = YAML::Store.new 'votes.yml'
     @store.transaction do
       @store['votes'] ||= {}
-      @store['votes'][@vote] ||= 0
-      @store['votes'][@vote] += 1
+      @store['votes'][@vote.downcase] ||= 0
+      @store['votes'][@vote.downcase] += 1
     end
     erb :cast
   end
 end
 
 get '/results' do
-  @title = 'Results so far:'
+  @title = 'Preliminary Results'
   @store = YAML::Store.new 'votes.yml'
   @votes = @store.transaction { @store['votes'] }
   erb :results
 end
 
 Choices = {
-  'BERN' => 'Bernie Sanders',
-  'BID' => 'Joe Biden',
-  'BOR' => 'Boris Shmuylovich',
-  'DJT' => 'Donald Trump',
-  'VLD' => 'Vladimir Putin',
-  'DXP' => 'Deng Xiaoping',
+  'BERN' => 'bernie sanders',
+  'BID' => 'joe biden',
+  'BOR' => 'boris shmuylovich',
+  'DJT' => 'donald trump',
+  'VLD' => 'vladimir putin',
+  'DXP' => 'deng xiaoping',
 }

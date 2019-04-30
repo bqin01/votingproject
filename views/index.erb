@@ -9,7 +9,7 @@
           <li>
             <label class='radio'>
               <input type='radio' name='vote' value='<%= text %>' id='vote_<%= id %>' />
-              <%= text %>
+              <%= text.split.map(&:capitalize).join(' ') %>
             </label>
           </li>
         <% end %>
