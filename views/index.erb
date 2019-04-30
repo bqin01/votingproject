@@ -2,14 +2,14 @@
 <html>
 
   <body class='container'>
-    <p>Who should be the next president</p>
+    <p>Who should be the next president?</p>
     <form action='cast' method='post'>
       <ul class='unstyled'>
         <% Choices.each do |id, text| %>
           <li>
             <label class='radio'>
               <input type='radio' name='vote' value='<%= text %>' id='vote_<%= id %>' />
-              <%= text %>
+              <%= text.split.map(&:capitalize).join(' ') %>
             </label>
           </li>
         <% end %>
