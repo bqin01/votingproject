@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
-
+<head>
+<link rel=”stylesheet” type=”text/css” href=”/Stylesheets/style.css” />
+</head>
   <body class='container'>
-    <p>You cast: <%= @vote %></p>
-    <p><a href='/results'>See the results!</a></p>
+    <p class='cast'>You cast: <%= @vote %></p>
+    <p class='button'><a href='/results'>See the results!</a></p>
+    <div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+  </div>
+
   </body>
 </html>
