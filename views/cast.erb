@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel=”stylesheet” type=”text/css” href=”/Stylesheets/style.css” />
+<!--<link rel=”stylesheet” type=”text/css” href=”/Stylesheets/style.css” />-->
+<link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
 </head>
   <body class='container'>
     <p class='cast'>You cast: <%= @vote %></p>
     <p class='button'><a href='/results'>See the results!</a></p>
     <div class="onoffswitch">
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+
+    <input type="checkbox" name="onoffswitch"
+     class="onoffswitch-checkbox" id="myonoffswitch" checked>
     <label class="onoffswitch-label" for="myonoffswitch">
         <span class="onoffswitch-inner"></span>
         <span class="onoffswitch-switch"></span>
