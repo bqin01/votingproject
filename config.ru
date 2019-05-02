@@ -1,4 +1,4 @@
 # config.ru
 
-require "./suffragist.rb"
+require "./suffragist"
 run Appl
