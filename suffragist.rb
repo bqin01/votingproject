@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/activerecord'
 require 'yaml/store'
 
 class Appl < Sinatra::Base
@@ -15,15 +16,15 @@ class Appl < Sinatra::Base
     else
       @vote = params['vote']
     end
-    if @vote == nil || @vote == ""
+    if @vote == nil || @vote == "" # Invalid votes!
       @title = 'Your vote didn\'t seem to go through.'
       erb :voteerror
     else
       @store = YAML::Store.new 'votes.yml'
       @store.transaction do
         @store['votes'] ||= {}
-        @store['votes'][@vote.downcase] ||= 0
-        @store['votes'][@vote.downcase] += 1
+        @store['votes'][@vote.downcase] ||= 0 #Ignore case
+        @store['votes'][@vote.downcase] += 1 #Ignore case
       end
       erb :cast
     end
@@ -35,7 +36,9 @@ class Appl < Sinatra::Base
     @votes = @store.transaction { @store['votes'] }
     erb :results
   end
+
 end
+
 Choices = {
   'BERN' => 'bernie sanders',
   'BID' => 'joe biden',
