@@ -1,3 +1,4 @@
 # Rakefile
-require './suffragist.rb'
+require 'sinatra/activerecord'
 require 'sinatra/activerecord/rake'
+require './suffragist'
