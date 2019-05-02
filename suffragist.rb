@@ -3,7 +3,7 @@ require 'yaml/store'
 
 
 get '/' do
-  @title = 'SINCE THE ELECTION BECAME A GAME VOTE AS MUCH AS YOU WANT'
+  @title = 'Vote for the Next President of the United States'
   erb :index
 end
 
