@@ -2,7 +2,7 @@
 <html>
 
   <body class='container'>
-    <p>You cast: <%= @vote.split.map(&:capitalize).join(' ') %></p>
+    <p>You cast: <%= @vote.split.map(&:capitalize).join(' ') %></p> <!-- Captialize the first letter of every word -->
     <p><a href='/results'>See the results!</a></p>
   </body>
 </html>
