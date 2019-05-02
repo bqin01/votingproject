@@ -1,6 +1,10 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'yaml/store'
+require './models/candid.rb'
+require './models/vote.rb'
+
+set :database_file, 'config/database.yml'
 
 class Appl < Sinatra::Base
 
@@ -20,30 +24,34 @@ class Appl < Sinatra::Base
       @title = 'Your vote didn\'t seem to go through.'
       erb :voteerror
     else
-      @store = YAML::Store.new 'votes.yml'
-      @store.transaction do
-        @store['votes'] ||= {}
-        @store['votes'][@vote.downcase] ||= 0 #Ignore case
-        @store['votes'][@vote.downcase] += 1 #Ignore case
+      @candid = Candid.find_by(name: @vote.downcase)
+      if @candid == nil
+        @candid = Candid.create(name: @vote.downcase, candid_id: Candid.all.count, num_votes: 0)
       end
+      @candid.num_votes += 1
+      @candid.save
+      # @store = YAML::Store.new 'votes.yml'
+      # @store.transaction do
+      #   @store['votes'] ||= {}
+      #   @store['votes'][@vote.downcase] ||= 0 #Ignore case
+      #   @store['votes'][@vote.downcase] += 1 #Ignore case
+      # end
       erb :cast
     end
   end
 
   get '/results' do
     @title = 'Preliminary Results'
-    @store = YAML::Store.new 'votes.yml'
-    @votes = @store.transaction { @store['votes'] }
+    @candids = Candid.all
     erb :results
   end
 
 end
-
-Choices = {
-  'BERN' => 'bernie sanders',
-  'BID' => 'joe biden',
-  'BOR' => 'boris shmuylovich',
-  'DJT' => 'donald trump',
-  'VLD' => 'vladimir putin',
-  'DXP' => 'deng xiaoping',
-}
+Choices = [
+  'bernie sanders',
+  'joe biden',
+  'boris shmuylovich',
+  'donald trump',
+  'vladimir putin',
+  'deng xiaoping'
+]

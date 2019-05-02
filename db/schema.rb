@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2019_05_02_152935) do
   create_table "votes", force: :cascade do |t|
     t.integer "vote_id", null: false
     t.string "voted_for", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

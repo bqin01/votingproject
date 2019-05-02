@@ -1,8 +1,8 @@
 <table class='table table-hover table-striped'>
-  <% @votes.each do |text, count| %>
+  <% @candids.each do |candid| %>
     <tr>
-      <th><%= text.split.map(&:capitalize).join(' ') %></th> <!-- Captializes every first letter to make it appear as a name -->
-      <td><%= count || 0 %>
+      <th> <%= candid.name.split.map(&:capitalize).join(' ') %>
+      <td> <%= candid.num_votes %>
     </tr>
   <% end %>
 </table>

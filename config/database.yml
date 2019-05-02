@@ -1,10 +1,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: votes_table
   pool: 2
-  username: postgres
-  password: postgres
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 production:
   adapter: postgresql
