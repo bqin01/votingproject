@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+  <body class='container'>
+    <h3>This candidate currently has <%= @candid.num_votes %> vote(s). </h3>
+    <% if @candid.num_votes == 0 %>
+      <h4> This candidate has no votes! </h4>
+    <% else %>
+      <h4> List of all votes made for this candidate: </h4>
+        <table class='table table-hover table-striped'>
+        <% @votes.order("created_at ASC").each do |vote| %> <!-- Display in chrono. order -->
+          <tr>
+            <p>Someone voted for <%=@title%> at <%= vote.created_at %>. </p>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+    <p><a href='/results'>Back to the results page</a></p>
+  </body>
+</html>

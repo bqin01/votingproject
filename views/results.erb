@@ -1,7 +1,11 @@
 <table class='table table-hover table-striped'>
-  <% @candids.each do |candid| %>
+  <tr> <!-- Sort the table how you want! -->
+    <td> <p> <a href="/results?sort=name&dir=ASC">ASC</a> / <a href="/results?sort=name&dir=DESC">DESC</a> </p>
+    <td> <p> <a href="/results?sort=num_votes&dir=ASC">ASC</a> / <a href="/results?sort=num_votes&dir=DESC">DESC</a> </p>
+  </tr>
+  <% @candids.order(@sort_by + " " + @dir).each do |candid| %>
     <tr>
-      <th> <%= candid.name.split.map(&:capitalize).join(' ') %>
+      <th> <a href="/candid/<%=candid.candid_id%>"> <%= candid.name.split.map(&:capitalize).join(' ') %> </a>
       <td> <%= candid.num_votes %>
     </tr>
   <% end %>

@@ -17,3 +17,6 @@ Create a logo for the app so that it will be available in the app store and not 
 
 
 Eventually create different voting systems and allow the creator of the 'survey' to choose it i.e. ranked based voting.
+
+
+Add time zone compatibility to voters page.

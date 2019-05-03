@@ -5,23 +5,25 @@
     <p>Who should be the next president?</p>
     <form action='cast' method='post'>
       <ul class='unstyled'>
-        <% Choices.each do |text| %>
+        <% Choices.each do |text| %> <!-- Only gives the original choices as options, just like in normal elections -->
           <li>
             <label class='radio'>
               <input type='radio' name='vote' value='<%= text %>'/>
-              <%= text.split.map(&:capitalize).join(' ') %>
+              <%= text.split.map(&:capitalize).join(' ') %> <!-- Capitalize every first letter in a word -->
             </label>
           </li>
         <% end %>
         <li>
           <label class='radio'>
             <input type='radio' name='vote' value='.new' id='.new'/>
-            Other Candidate (Write-in)
+            Other Candidate (Write-in) <!-- Write in your candidate! -->
             <input type='text' name='new_candid' id='newfield'/>
           </label>
         </li>
       </ul>
       <button type='submit' class='btn btn-primary'>Cast this vote!</button>
+      <p> </p>
+      <p>Alternatively, go straight to the <a href = "/results">results</a>.</p>
     </form>
   </body>
 </html>
